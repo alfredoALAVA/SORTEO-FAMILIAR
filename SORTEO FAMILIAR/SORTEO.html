@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="icon" type="image/x-icon" href="bnm.ico">
+
+  <title>ELIMINATORIA </title>
+  <script type="text/javascript">
+    // Definir los participantes del sorteo
+    var participantes = [
+      { cedula: "2345678915", nombre: "ALFREDO ALAVA" },
+      { cedula: "1245786549", nombre: "BELEN BERMUDES  " },
+      { cedula: "1345789875", nombre: "MILITA MARTINES " },
+      { cedula: "3457865498", nombre: "MELANI ROMERO" },
+      { cedula: "1245786549", nombre: "KIJADA CATERVA" },
+      { cedula: "5476215489", nombre: "KENDO KAPONY " },
+      { cedula: "3457816458", nombre: "TUMBAKO BRISA" },
+      { cedula: "9756423155", nombre: "BELEN ALAVA" },
+      { cedula: "7548612345", nombre: "DANNY CATERVA" },
+      { cedula: "3216845975", nombre: "QUIJADA MACIAS" },
+      { cedula: "6542138794", nombre: "LUCHO PORTUANO" },
+      { cedula: "6249875168", nombre: "CUCHUCHO MACIAS" },
+      { cedula: "6542138794", nombre: "CRISTIAS MORIARTE" },
+      { cedula: "6249875168", nombre: "SAMARA SALOME" },
+      { cedula: "6542138794", nombre: "LOULI DECADEX" }, 
+      { cedula: "6249875168", nombre: "JOSSUE ZAMBRANO" },
+      { cedula: "6542138794", nombre: "MINDA BERMUDES" },
+      { cedula: "6249875168", nombre: "DANY MARCILLO" },
+      { cedula: "6542138794", nombre: "JOSE TENORIO" },
+      { cedula: "6249875168", nombre: "CHACALACO MOREIRA" },
+      // ... agregar los demás participantes aquí ...
+    ];
+
+    var conteoRegresivo;
+    var sorteo;
+
+    function iniciarSorteo() {
+      // Reiniciar el sorteo si ya se ha realizado
+      reiniciarSorteo();
+
+      // Mostrar el conteo regresivo de 5 segundos
+      var segundos = 5;
+      document.getElementById("contador").innerText = segundos;
+      conteoRegresivo = setInterval(function() {
+        segundos--;
+        document.getElementById("contador").innerText = segundos;
+        if (segundos <=0) {
+          clearInterval(conteoRegresivo);
+
+          // Mostrar las eliminaciones y el ganador cada 3 segundos
+          var i = 0;
+          sorteo = setInterval(function() {
+            if (i >= 4) {
+              clearInterval(sorteo);
+            } else {
+              var eliminado = participantes.splice(Math.floor(Math.random() * participantes.length), 1)[0];
+              document.getElementById("eliminados").innerHTML += eliminado.nombre + "<br>";
+              i++;
+              if (i == 4) {
+                var ganador = participantes.splice(Math.floor(Math.random() * participantes.length), 1)[0];
+                document.getElementById("ganador").innerText = ganador.nombre;
+              }
+            }
+          }, 3000);
+        }
+      }, 1000);
+    }
+
+    function reiniciarSorteo() {
+      // Detener el conteo regresivo y el sorteo si están en progreso
+      clearInterval(conteoRegresivo);
+      clearInterval(sorteo);
+
+      // Restablecer los valores iniciales
+      document.getElementById("contador").innerText = "5";
+      document.getElementById("eliminados").innerHTML = "";
+      document.getElementById("ganador").innerText = "";
+      participantes = [
+    
+
+      { cedula: "2345678915", nombre: "ALFREDO ALAVA" },
+      { cedula: "1245786549", nombre: "BELEN BERMUDES  " },
+      { cedula: "1345789875", nombre: "MILITA MARTINES " },
+      { cedula: "3457865498", nombre: "MELANI ROMERO" },
+      { cedula: "1245786549", nombre: "KIJADA CATERVA" },
+      { cedula: "5476215489", nombre: "KENDO KAPONY " },
+      { cedula: "3457816458", nombre: "TUMBAKO BRISA" },
+      { cedula: "9756423155", nombre: "BELEN ALAVA" },
+      { cedula: "7548612345", nombre: "DANNY CATERVA" },
+      { cedula: "3216845975", nombre: "QUIJADA MACIAS" },
+      { cedula: "6542138794", nombre: "LUCHO PORTUANO" },
+      { cedula: "6249875168", nombre: "CUCHUCHO MACIAS" },
+      { cedula: "6542138794", nombre: "CRISTIAS MORIARTE" },
+      { cedula: "6249875168", nombre: "SAMARA SALOME" },
+      { cedula: "6542138794", nombre: "LOULI DECADEX" }, 
+      { cedula: "6249875168", nombre: "JOSSUE ZAMBRANO" },
+      { cedula: "6542138794", nombre: "MINDA BERMUDES" },
+      { cedula: "6249875168", nombre: "DANY MARCILLO" },
+      { cedula: "6542138794", nombre: "JOSE TENORIO" },
+      { cedula: "6249875168", nombre: "CHACALACO MOREIRA" },
+        // ... agregar los demás participantes aquí ...
+      ];
+    }
+  </script>
+</head>
+<body>
+  <Div>
+  <h1>ELIMINATORIA DEL SORTEO PARROQUIAL</h1>
+  <button onclick="iniciarSorteo()">STAR</button>
+  <button onclick="reiniciarSorteo()">REORGANIZAR</button>
+  <p>CONTADOR DE LAS ELIMINATORIAS: <span id="contador">5</span> segundos PARA LAS ELIMINATORIAS</p>
+  <h2>FINALIZACION DE LOS PARTICIPANTES ELIMINADOS:</h2>
+  <div id="eliminados"></div>
+  <h2>GANADOR DE LAS ELIMINATORIAS PARROQUIALES:</h2>
+  <p id="ganador"></p>
+
+  <h2>INTEGRANTES DE LA PARROQUIAS:</h2>
+  <ul>
+    <!-- Mostrar los nombres de los integrantes -->
+    <script type="text/javascript">
+      for (var i = 0; i < participantes.length; i++) {
+        document.write("<li>" + participantes[i].nombre + "</li>");
+      }
+     
+    </script>
+  </ul>
+</Div>
+</body>
+</html>
